@@ -1,0 +1,38 @@
+var should = require("should");
+var request = require("request");
+var expect = require("chai").expect;
+var baseUrl = "https://swapi.co/api";
+var util = require("util");
+
+describe('return Luke', function (){
+    it('returns Luke', function(done){
+        request.get({url: baseUrl + '/people/1' },
+        function(error, response, body) {
+            expect(response.statusCode).to.equal(200);
+            console.log(body);
+            done();
+        })
+    })
+})
+
+describe('return all', function (){
+    it('returns all', function(done){
+        request.get({url: baseUrl + '/people' },
+        function(error, response, body) {
+            expect(response.statusCode).to.equal(200);
+            console.log(body);
+            done();
+        })
+    })
+})
+
+describe('return R2-D2', function (){
+    it('returns R2-D2', function(done){
+        request.get({url: baseUrl + '/people?={"name": "R2-D2"}' },
+        function(error, response, body) {
+            expect(response.statusCode).to.equal(200);
+            console.log(body);
+            done();
+        })
+    })
+})
